@@ -1,0 +1,46 @@
+body{
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-color: white;
+    font-family: 'Lateef', cursive;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    background-color:rgba(43, 38, 38, 0.1);
+    border-radius: 1%;
+    padding: 16px;
+    margin-bottom: 64px;
+}
+form{
+    text-align: right;
+}
+.thankyou{
+    text-align: center;
+    padding: 64px;
+    display: none;
+    font-size: 28px;
+}
+#page-form.done form {
+    display: none;
+}
+#page-form.done .thankyou {
+    display: block;
+}
+h1{
+    margin-bottom: 28px;
+    text-align: center;
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 60px;
+}
+
+button{
+    margin-bottom: 15px;
+}
+
+.form-check-label{
+    margin-right: 15px;
+}
