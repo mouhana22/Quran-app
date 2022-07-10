@@ -1,0 +1,50 @@
+{
+    "display": "standalone",
+    "name": "صانع الخطط القرانية",
+    "short_name": "صانع الخطط",
+    "icons": [
+        {
+            "src": "quran-128x128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "quran-144x144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "quran-152x152.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "quran-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "quran-384x384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "quran-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "quran-72x72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "quran-96x96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        }
+    ]
+    
+
+    
+}
