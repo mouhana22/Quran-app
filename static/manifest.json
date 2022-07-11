@@ -1,7 +1,7 @@
 {
     "background_color":"#ffffff",
     "orientation":"portrait-primary",
-    "display": "standalone",
+    "display": "browser",
     "name": "صانع الخطط القرانية",
     "short_name": "صانع الخطط",
     "icons": [
