@@ -23,7 +23,6 @@ app.post("/", (req, res) => {
   creatTasksForSaving(sheet, qArray, req.body);
   creatTasksForRevision(sheet, qArray, req.body);
   workbook.xlsx.writeFile("myPlan.xlsx");
-  res.sendFile(__dirname + "/done.html");
   /*
   res.status(200);
   res.setHeader('Content-Type', 'text/xlsx');
