@@ -22,6 +22,9 @@ app.post("/", (req, res) => {
   sheetStyling(sheet);
   creatTasksForSaving(sheet, qArray, req.body);
   creatTasksForRevision(sheet, qArray, req.body);
+  workbook.xlsx.writeFile("myPlan.xlsx");
+  res.sendFile(__dirname + "/done.html");
+  /*
   res.status(200);
   res.setHeader('Content-Type', 'text/xlsx');
   res.setHeader(
@@ -31,7 +34,11 @@ app.post("/", (req, res) => {
     workbook.xlsx.write(res)
         .then(function () {
             res.end()
-        });
+        });*/
+});
+
+app.post("/download", (req, res) => {
+  res.download("./myPlan.xlsx", "myPlan.xlsx");
 });
 
 
