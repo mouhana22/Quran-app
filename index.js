@@ -255,7 +255,7 @@ function creatTasksForSaving(sheet, qArray, userInput) {
             sheet.getCell("F" + (j + count)).value = "الخ";
             count++;
           }
-          console.log("this " + count);
+          
         }
         souraOfSavingIndex--;
         countarOfAya = 0;
@@ -267,7 +267,7 @@ function creatTasksForSaving(sheet, qArray, userInput) {
         pageOFEndOFtask == qArray[souraOfSavingIndex][countarOfAya].page &&
         qArray[souraOfSavingIndex][countarOfAya].line_end >= endOfTask
       ) {
-        console.log(countarOfAya);
+        
         if (countarOfAya == 0) {
           sheet.getCell("C" + i).value =
             qArray[souraOfSavingIndex][countarOfAya].sura_name_ar + " 1";
