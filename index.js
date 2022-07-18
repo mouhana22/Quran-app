@@ -223,8 +223,12 @@ function creatTasksForSaving(sheet, qArray, userInput) {
   let souraOfSavingIndex = parseInt(userInput.souraOfSaving);
   let amountOfSaving = parseInt(userInput.amountOfSaving);
   let countarOfAya = 0;
+  if(souraOfSavingIndex == 1){
+    countarOfAya = 5;
+  }
   let endOfTask = qArray[souraOfSavingIndex][countarOfAya].line_start;
   let pageOFEndOFtask = qArray[souraOfSavingIndex][countarOfAya].page;
+  
   for (let i = 3; i < 46; i++) {
     if (i == 13 || i == 24 || i == 35) {
       continue;
@@ -299,6 +303,9 @@ function creatTasksForRevisionByLine(sheet, qArray, userInput) {
   let souraOfRevisionIndex = parseInt(userInput.souraOfRevision);
   let amountOfRevision = parseInt(userInput.amountOfRevision);
   let countarOfAya = 0;
+  if(souraOfRevisionIndex == 1){
+    countarOfAya = 5;
+  }
   let endOfTask = qArray[souraOfRevisionIndex][countarOfAya].line_start;
   let pageOFEndOFtask = qArray[souraOfRevisionIndex][countarOfAya].page;
   let startOfNextTask = "";
@@ -345,6 +352,11 @@ function creatTasksForRevisionByLine(sheet, qArray, userInput) {
       }
 
       countarOfAya++;
+    }
+    if (souraOfRevisionIndex > 113) {
+      sheet.getCell("G" + i).value = startOfNextTask;
+      sheet.getCell("H" + i).value = "النَّاس الخ"
+      break;
     }
   }
 }
