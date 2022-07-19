@@ -16,18 +16,32 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-    let studentName = req.body.studentName
-    const workbook = new Excel.Workbook();
-    var sheet = workbook.addWorksheet(studentName);    
-  sheetStyling(sheet);
-  creatTasksForSaving(sheet, qArray, req.body);
-  creatTasksForRevision(sheet, qArray, req.body);
-  
+  const workbook = new Excel.Workbook();
+    let length = Object.keys(req.body).length;
+    for(let i = 1;i<=length/7;i++){
+      let studentName = req.body["studentName"+i];
+      let souraOfSaving = parseInt(req.body["souraOfSaving"+i]);
+      let amountOfSaving = parseInt(req.body["amountOfSaving"+i]);
+      let souraOfRevision = parseInt(req.body["souraOfRevision"+i]);
+      let amountOfRevision = parseInt(req.body["amountOfRevision"+i]);
+      let typeOfRevision = parseInt(req.body["typeOfRevision"+i]);
+      let typeOfSaving = parseInt(req.body["typeOfSaving"+i]);
+
+
+      var sheet = workbook.addWorksheet(studentName);
+      
+      sheetStyling(sheet,studentName,req.body.halaqaName);
+
+      creatTasksForSaving(sheet,qArray,souraOfSaving,amountOfSaving,typeOfSaving);
+      creatTasksForRevision(sheet, qArray,souraOfRevision,amountOfRevision,typeOfRevision,typeOfSaving);
+    }
+    
+  let filename = encodeURIComponent(req.body.halaqaName+".xlsx")
   res.status(200);
-  res.setHeader('Content-Type', 'text/xlsx');
+  res.setHeader('Content-Type', 'xlsx');
   res.setHeader(
         'Content-Disposition',
-        `attachment; filename=myPlan.xlsx`
+        'attachment;filename*=UTF-8\'\''+filename
     );
     workbook.xlsx.write(res)
         .then(function () {
@@ -39,10 +53,15 @@ app.post("/", (req, res) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}...`));
 
-function sheetStyling(sheet) {
+function sheetStyling(sheet,studentName,halaqaName) {
   // set the sheet to be RTL
   sheet.views = [{ rightToLeft: true }];
-
+  // student name
+  sheet.getCell("C1").value = studentName;
+  sheet.getCell("C1").font = {bold: true};
+  // halaqa name
+  sheet.getCell("F1").value = halaqaName;
+  sheet.getCell("F1").font = {bold: true};
   // row 1 style
   sheet.getCell("B1").font = { color: { argb: "FFFFFF" } };
   sheet.getCell("B1").value = "اسم الطالب";
@@ -219,9 +238,7 @@ function sheetStyling(sheet) {
   }
 }
 
-function creatTasksForSaving(sheet, qArray, userInput) {
-  let souraOfSavingIndex = parseInt(userInput.souraOfSaving);
-  let amountOfSaving = parseInt(userInput.amountOfSaving);
+function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typeOfSaving) {
   let countarOfAya = 0;
   if(souraOfSavingIndex == 1){
     countarOfAya = 5;
@@ -261,7 +278,12 @@ function creatTasksForSaving(sheet, qArray, userInput) {
           }
           
         }
-        souraOfSavingIndex--;
+        if(typeOfSaving == 0){
+          souraOfSavingIndex--;
+        }else{
+          souraOfSavingIndex++;
+        }
+        
         countarOfAya = 0;
         endOfTask = qArray[souraOfSavingIndex][countarOfAya].line_start;
         pageOFEndOFtask = qArray[souraOfSavingIndex][countarOfAya].page;
@@ -291,17 +313,15 @@ function creatTasksForSaving(sheet, qArray, userInput) {
   }
 }
 
-function creatTasksForRevision(sheet, qArray, userInput) {
-  if (userInput.typeOfRevision == "1") {
-    creatTasksForRevisionBySoura(sheet, qArray, userInput);
+function creatTasksForRevision(sheet, qArray,souraOfRevisionIndex,amountOfRevision,typeOfRevision,typeOfSaving) {
+  if (typeOfRevision == "1") {
+    creatTasksForRevisionBySoura(sheet, qArray,souraOfRevisionIndex,amountOfRevision,typeOfSaving);
   } else {
-    creatTasksForRevisionByLine(sheet, qArray, userInput);
+    creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOfRevision,typeOfSaving);
   }
 }
 
-function creatTasksForRevisionByLine(sheet, qArray, userInput) {
-  let souraOfRevisionIndex = parseInt(userInput.souraOfRevision);
-  let amountOfRevision = parseInt(userInput.amountOfRevision);
+function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOfRevision,typeOfSaving) {
   let countarOfAya = 0;
   if(souraOfRevisionIndex == 1){
     countarOfAya = 5;
@@ -344,9 +364,13 @@ function creatTasksForRevisionByLine(sheet, qArray, userInput) {
       }
       if (qArray[souraOfRevisionIndex].length - 1 == countarOfAya) {
         countarOfAya = 0;
-        souraOfRevisionIndex++;
+        if(typeOfSaving == 0){
+          souraOfRevisionIndex++;
+        }else{
+          souraOfRevisionIndex--;
+        }
         
-        if (souraOfRevisionIndex > 113) break;
+        if (souraOfRevisionIndex > 113 || souraOfRevisionIndex < 1) break;
         
         
       }
@@ -358,14 +382,17 @@ function creatTasksForRevisionByLine(sheet, qArray, userInput) {
       sheet.getCell("H" + i).value = "النَّاس الخ"
       break;
     }
+    if (souraOfRevisionIndex < 1) {
+      sheet.getCell("G" + i).value = startOfNextTask;
+      sheet.getCell("H" + i).value = "البَقَرَة الخ"
+      break;
+    }
   }
 }
 
-function creatTasksForRevisionBySoura(sheet, qArray, userInput) {
-  let souraOfRevisionIndex = parseInt(userInput.souraOfRevision);
-  let amountOfRevision = parseInt(userInput.amountOfRevision);
+function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amountOfRevision,typeOfSaving) {
   for (let i = 3; i < 46; i++) {
-    if (souraOfRevisionIndex > 113) {
+    if ((souraOfRevisionIndex > 113 && typeOfSaving==0) || (souraOfRevisionIndex < 1 && typeOfSaving==1)) {
       break;
     }
     if (
@@ -380,17 +407,30 @@ function creatTasksForRevisionBySoura(sheet, qArray, userInput) {
       sheet.getCell("G" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
       sheet.getCell("H" + i).value = "الخ";
-      souraOfRevisionIndex++;
+      if(typeOfSaving == 0){
+        souraOfRevisionIndex++;
+      }else{
+        souraOfRevisionIndex--;
+      }
     } else {
       sheet.getCell("G" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
 
-      souraOfRevisionIndex += amountOfRevision;
-      if (souraOfRevisionIndex >= 113) {
-        souraOfRevisionIndex = 114;
-      }
-      sheet.getCell("H" + i).value =
-        qArray[souraOfRevisionIndex - 1][0].sura_name_ar + " الخ";
+        if(typeOfSaving == 0){
+          souraOfRevisionIndex += amountOfRevision;
+          if (souraOfRevisionIndex >= 113) {
+            souraOfRevisionIndex = 114;
+          }
+          sheet.getCell("H" + i).value =
+            qArray[souraOfRevisionIndex - 1][0].sura_name_ar + " الخ";
+        }else{
+          souraOfRevisionIndex -= amountOfRevision;
+          if (souraOfRevisionIndex <= 1) {
+            souraOfRevisionIndex = 0;
+          }
+          sheet.getCell("H" + i).value =
+        qArray[souraOfRevisionIndex + 1][0].sura_name_ar + " الخ";
+        }
     }
   }
 }
