@@ -6,15 +6,13 @@ body{
     font-family: 'Lateef', cursive;
     margin: 0;
     padding: 0;
+    text-align: right;
 }
 .container {
     background-color:rgba(43, 38, 38, 0.1);
     border-radius: 1%;
     padding: 16px;
     margin-bottom: 64px;
-}
-form{
-    text-align: right;
 }
 .thankyou{
     text-align: center;
@@ -38,6 +36,7 @@ h1{
 }
 h3{
     text-align: center;
+    
 }
 
 button{
