@@ -38,7 +38,9 @@ app.post("/", (req, res) => {
     
   let filename = encodeURIComponent(req.body.halaqaName+".xlsx")
   res.status(200);
-  res.setHeader('Content-Type', 'xlsx');
+  //res.setHeader('Content-Type', 'txt/xlsx');
+  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
   res.setHeader(
         'Content-Disposition',
         'attachment;filename*=UTF-8\'\''+filename
