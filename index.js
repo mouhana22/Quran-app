@@ -247,7 +247,7 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
   }
   let endOfTask = qArray[souraOfSavingIndex][countarOfAya].line_start;
   let pageOFEndOFtask = qArray[souraOfSavingIndex][countarOfAya].page;
-  
+  let lastTaskEndLine , lastTaskEndPage;
   for (let i = 3; i < 46; i++) {
     if (i == 13 || i == 24 || i == 35) {
       continue;
@@ -260,7 +260,47 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
 
     while (true) {
       if (qArray[souraOfSavingIndex].length - 1 == countarOfAya) {
-        sheet.getCell("C" + i).value =
+        let addIt = false;
+        let lastTaskPercentage = 0.3 * amountOfSaving;
+        let remainingLines;
+        if(lastTaskEndPage == qArray[souraOfSavingIndex][countarOfAya].page){
+          remainingLines = qArray[souraOfSavingIndex][countarOfAya].line_end - lastTaskEndLine;
+          if(remainingLines <= lastTaskPercentage){
+            addIt = true;
+          }
+        }else{
+          remainingLines = 15 - lastTaskEndLine;
+          remainingLines += qArray[souraOfSavingIndex][countarOfAya].line_end;
+          remainingLines += ((qArray[souraOfSavingIndex][countarOfAya].page - lastTaskEndPage) - 1) * 15;
+          if(remainingLines <= lastTaskPercentage){
+            addIt = true;
+          }
+        }
+        if(addIt){
+          i--;
+          if (i == 13 || i == 24 || i == 35) {
+            i--;
+          }
+          sheet.getCell("D" + i).value = "الخ";
+          let count = 1;
+        let j = i;
+        while (count < 4) {
+          if (j >= 45) {
+            break;
+          }
+          if (sheet.getCell("E" + (j + count)).value != "---") {
+            j++;
+            continue;
+          } else {
+            sheet.getCell("E" + (j + count)).value =
+              qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
+            sheet.getCell("F" + (j + count)).value = "الخ";
+            count++;
+          }
+          
+        }
+        }else{
+          sheet.getCell("C" + i).value =
           qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
         sheet.getCell("D" + i).value = "الخ";
         let count = 1;
@@ -280,6 +320,9 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
           }
           
         }
+        }
+
+        
         if(typeOfSaving == 0){
           souraOfSavingIndex--;
         }else{
@@ -301,11 +344,15 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
             qArray[souraOfSavingIndex][countarOfAya].sura_name_ar + " 1";
           sheet.getCell("D" + i).value =
             qArray[souraOfSavingIndex][countarOfAya].aya_no;
+          lastTaskEndLine = qArray[souraOfSavingIndex][countarOfAya].line_end;
+          lastTaskEndPage = qArray[souraOfSavingIndex][countarOfAya].page;
         } else {
           sheet.getCell("C" + i).value =
             qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
           sheet.getCell("D" + i).value =
             qArray[souraOfSavingIndex][countarOfAya - 1].aya_no;
+          lastTaskEndLine = qArray[souraOfSavingIndex][countarOfAya - 1].line_end;
+          lastTaskEndPage = qArray[souraOfSavingIndex][countarOfAya - 1].page;
         }
         break;
       }
@@ -360,8 +407,8 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
         if (i != 3) {
           sheet.getCell("G" + i).value = startOfNextTask;
         }
-        startOfNextTask = sheet.getCell("H" + i).value;
-
+        //startOfNextTask = sheet.getCell("H" + i).value;
+        startOfNextTask = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar + " " + 1;
         break;
       }
       if (qArray[souraOfRevisionIndex].length - 1 == countarOfAya) {
