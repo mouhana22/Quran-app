@@ -4,7 +4,7 @@ const Excel = require("exceljs");
 
 var qArray = JSON.parse(fs.readFileSync("data.json").toString());
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json()); // this is to accept data in json format
