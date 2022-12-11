@@ -393,7 +393,7 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
 
 function creatTasksForRevision(sheet, qArray,souraOfRevisionIndex,amountOfRevision,typeOfRevision,startOfRevision) {
   if (typeOfRevision == "1") {
-    creatTasksForRevisionBySoura(sheet, qArray,souraOfRevisionIndex,amountOfRevision,startOfRevision);
+    creatTasksForRevisionBySoura(sheet, qArray,souraOfRevisionIndex,amountOfRevision,startOfRevision,typeOfRevision);
   } else {
     creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOfRevision,startOfRevision);
   }
@@ -555,9 +555,9 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
   }
 }
 
-function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amountOfRevision,startOfRevision) {
+function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amountOfRevision,startOfRevision,typeOfRevision) {
   for (let i = 3; i < 46; i++) {
-    if ((souraOfRevisionIndex > 113 && typeOfSaving==0) || (souraOfRevisionIndex < 1 && typeOfSaving==1)) {
+    if ((souraOfRevisionIndex > 113) || (souraOfRevisionIndex < 1)) {
       break;
     }
     if (
@@ -572,7 +572,7 @@ function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amount
       sheet.getCell("G" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
       sheet.getCell("H" + i).value = "الخ";
-      if(typeOfSaving == 0){
+      if(typeOfRevision == 0){
         souraOfRevisionIndex++;
       }else{
         souraOfRevisionIndex--;
