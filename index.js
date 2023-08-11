@@ -33,8 +33,39 @@ app.post("/", (req, res) => {
       
       sheetStyling(sheet,studentName,req.body.halaqaName);
 
-      creatTasksForSaving(sheet,qArray,souraOfSaving,amountOfSaving,typeOfSaving);
+      souraOfSaving !== 0 ? creatTasksForSaving(sheet,qArray,souraOfSaving,amountOfSaving,typeOfSaving):" ";
       creatTasksForRevision(sheet, qArray,souraOfRevision,amountOfRevision,typeOfRevision,startOfRevision);
+
+      sheet.insertRow(1);
+      sheet.mergeCells('B1:E1');
+      sheet.getCell("B1").fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "FCE5CD" },
+        };
+        sheet.mergeCells('G1:J1');
+        sheet.getCell("G1").fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FCE5CD" },
+          };
+      sheet.getCell("A1").font = { color: { argb: "000000" } };
+      sheet.getCell("A1").value = ":اسم الطالب";
+      sheet.getCell("A1").fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "D9D9D9" },
+        };
+      sheet.getCell("B1").value = studentName;
+
+        sheet.getCell("F1").font = { color: { argb: "000000" } };
+        sheet.getCell("F1").value = "الحلقة";
+        sheet.getCell("F1").fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "D9D9D9" },
+          };
+      sheet.getCell("G1").value = req.body.halaqaName;
     }
     
   let filename = encodeURIComponent(req.body.halaqaName+".xlsx")
@@ -60,47 +91,75 @@ function sheetStyling(sheet,studentName,halaqaName) {
   // set the sheet to be RTL
   sheet.views = [{ rightToLeft: true }];
   // student name
-  sheet.getCell("C1").value = studentName;
+  //sheet.getCell("C1").value = studentName;
   sheet.getCell("C1").font = {bold: true};
   // halaqa name
-  sheet.getCell("F1").value = halaqaName;
+  //sheet.getCell("F1").value = halaqaName;
   sheet.getCell("F1").font = {bold: true};
   // row 1 style
-  sheet.getCell("B1").font = { color: { argb: "FFFFFF" } };
-  sheet.getCell("B1").value = "اسم الطالب";
-  sheet.getCell("B1").fill = {
+  sheet.getCell("A1").font = { color: { argb: "000000" } };
+  sheet.getCell("A1").value = "الهدف";
+  sheet.getCell("A1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "4472C4" },
+    fgColor: { argb: "D9D9D9" },
+  };
+  
+      sheet.getCell("B1").fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: "FCE5CD" },
+        };sheet.getCell("C1").fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FCE5CD" },
+          };
+          sheet.getCell("D1").fill = {
+            type: "pattern",
+            pattern: "solid",
+            fgColor: { argb: "FCE5CD" },
+            };
+            sheet.getCell("E1").fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "FCE5CD" },
+              };
+        sheet.getCell("G1").fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FCE5CD" },
+          };
+          sheet.getCell("I1").fill = {
+            type: "pattern",
+            pattern: "solid",
+            fgColor: { argb: "FCE5CD" },
+            };
+            sheet.getCell("J1").fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "FCE5CD" },
+              };
+
+  sheet.getCell("F1").font = { color: { argb: "000000" } };
+  sheet.getCell("F1").value = " الحفظ";
+  sheet.getCell("F1").fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "D9D9D9" },
   };
 
-  sheet.getCell("E1").font = { color: { argb: "FFFFFF" } };
-  sheet.getCell("E1").value = " الحلقة";
-  sheet.getCell("E1").fill = {
+  sheet.getCell("H1").font = { color: { argb: "000000" } };
+  sheet.getCell("H1").value = "المراجعة";
+  sheet.getCell("H1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "4472C4" },
+    fgColor: { argb: "D9D9D9" },
   };
 
-  sheet.getCell("G1").font = { color: { argb: "FFFFFF" } };
-  sheet.getCell("G1").value = "مقدار الحفظ اليومي";
-  sheet.getCell("G1").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "4472C4" },
-  };
-
-  sheet.getCell("I1").font = { color: { argb: "FFFFFF" } };
-  sheet.getCell("I1").value = "رقم الخطة";
-  sheet.getCell("I1").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "4472C4" },
-  };
 
   // row 2 style
   sheet.getRow(2).height = 20;
-  for (let i = 65; i < 76; i++) {
+  for (let i = 65; i < 75; i++) {
     sheet.getCell(String.fromCharCode(i) + "2").font = {
       size: 8,
       color: { argb: "FFFFFF" },
@@ -108,7 +167,7 @@ function sheetStyling(sheet,studentName,halaqaName) {
     sheet.getCell(String.fromCharCode(i) + "2").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "4472C4" },
+      fgColor: { argb: "A61C00" },
     };
     sheet.getCell(String.fromCharCode(i) + "2").border = {
       top: { style: "thin" },
@@ -122,17 +181,16 @@ function sheetStyling(sheet,studentName,halaqaName) {
       wrapText: true,
     };
   }
-  sheet.getCell("A2").value = "الواجب اليومي";
-  sheet.getCell("B2").value = "تلقين المعلم للواجب";
+  sheet.getCell("A2").value = "الواجب";
+  sheet.getCell("B2").value = "التلقين";
   sheet.getCell("C2").value = "الحفظ من";
   sheet.getCell("D2").value = "الحفظ الى";
-  sheet.getCell("E2").value = "المراجعة الصغرى من";
-  sheet.getCell("F2").value = "المراجعة الصغرى الى";
-  sheet.getCell("G2").value = "المراجعة الكبرى من";
-  sheet.getCell("H2").value = "المراجعة الكبرى الى";
-  sheet.getCell("I2").value = "الدرجة";
-  sheet.getCell("J2").value = "التقدير";
-  sheet.getCell("K2").value = "تاريخ الانجاز";
+  sheet.getCell("E2").value = "الدرجة";
+  sheet.getCell("F2").value = "المراجعة من";
+  sheet.getCell("G2").value = "المراجعة الى";
+  sheet.getCell("H2").value = "الدرجة";
+  sheet.getCell("I2").value = "التقييم";
+  sheet.getCell("J2").value = "تاريخ الانجاز";
 
   // from A3 to K46
   let countar = 1;
@@ -159,7 +217,7 @@ function sheetStyling(sheet,studentName,halaqaName) {
           msg = "* مبارك عليك هذا الإنجاز ومزيد من التقدم والتفوق بإذن الله *";
           break;
       }
-      for (let j = 65; j < 76; j++) {
+      for (let j = 65; j < 75; j++) {
         if (j == 67) {
           sheet.mergeCells("C" + i + ":H" + i);
           sheet.getCell("C" + i).fill = {
@@ -196,7 +254,7 @@ function sheetStyling(sheet,studentName,halaqaName) {
       continue;
     }
     // row 3 to 12, 14 to 23, 25 to 34, 36 to 45
-    for (let j = 65; j < 76; j++) {
+    for (let j = 65; j < 75; j++) {
       if (j == 65) {
         sheet.getCell("A" + i).value = countar;
         sheet.getCell("A" + i).alignment = {
@@ -242,6 +300,8 @@ function sheetStyling(sheet,studentName,halaqaName) {
 }
 
 function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typeOfSaving) {
+  
+  let wantedTest = "";
   let countarOfAya = 0;
   if(souraOfSavingIndex == 1){
     countarOfAya = 5;
@@ -251,15 +311,43 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
   let lastTaskEndLine = null;
   let lastTaskEndPage = null;
   for (let i = 3; i < 46; i++) {
-    if (i == 13 || i == 24 || i == 35) {
+    if (i == 13 || i == 24 || i == 35 || sheet.getCell("C" + i).value != "---") {
       continue;
     }
-    endOfTask += amountOfSaving;
-    while (endOfTask > 15) {
-      endOfTask = endOfTask - 15;
-      pageOFEndOFtask++;
+    if(amountOfSaving % 15 == 0){
+      endOfTask += amountOfSaving;
+      while (endOfTask > 15) {
+        endOfTask = endOfTask - 15;
+        pageOFEndOFtask++;
+      }
+      if(endOfTask < 5){
+        endOfTask = 15;
+        pageOFEndOFtask--;
+      }else if(endOfTask > 11){
+        endOfTask = 15;
+      }
+    }else if(amountOfSaving == 7 || amountOfSaving % 15 == 7){
+      let temp = amountOfSaving - 7;
+      while (temp != 0 ) {
+        temp = temp - 15;
+        pageOFEndOFtask++;
+      }
+      if(endOfTask < 6){
+        endOfTask = 8;
+      }else if(endOfTask < 12){
+        endOfTask = 15;
+      }else if(endOfTask < 16){
+        endOfTask = 8;
+        pageOFEndOFtask++;
+      }
     }
-    
+    else{
+      endOfTask += amountOfSaving;
+      while (endOfTask > 15) {
+        endOfTask = endOfTask - 15;
+        pageOFEndOFtask++;
+      }
+    }
     while (true) {
       if (qArray[souraOfSavingIndex].length - 1 == countarOfAya) {
         
@@ -287,6 +375,12 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
           if (i == 13 || i == 24 || i == 35) {
             i--;
           }
+          //wanted test calc
+          if(souraOfSavingIndex==77 || souraOfSavingIndex==66 || souraOfSavingIndex==57 || souraOfSavingIndex==45 || souraOfSavingIndex==35 || souraOfSavingIndex==29 || souraOfSavingIndex==22 || souraOfSavingIndex==17 || souraOfSavingIndex==8 || souraOfSavingIndex==4 || souraOfSavingIndex==1){
+            wantedTest = 31 - qArray[souraOfSavingIndex][0].jozz
+          }
+          sheet.getCell("B1").value = wantedTest;
+
           sheet.getCell("C" + i).value =
           qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
           sheet.getCell("D" + i).value = "الخ";
@@ -296,17 +390,17 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
           if (j >= 45 || (j+count) > 45) {
             break;
           }
-          if (sheet.getCell("E" + (j + count)).value != "---") {
+          if (sheet.getCell("C" + (j + count)).value != "---") {
             if((j+count) == 13 || (j+count) == 24 || (j+count) == 35){
               j++;
               continue;
             }
-            sheet.getCell("F" + (j + count)).value = qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " الخ";
+            sheet.getCell("D" + (j + count)).value = qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " الخ";
             count++;
           } else {
-            sheet.getCell("E" + (j + count)).value =
+            sheet.getCell("C" + (j + count)).value =
               qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
-            sheet.getCell("F" + (j + count)).value = "الخ";
+            sheet.getCell("D" + (j + count)).value = "الخ";
             count++;
           }
           
@@ -317,21 +411,28 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
         sheet.getCell("D" + i).value = "الخ";
         let count = 1;
         let j = i;
+
+        //wanted test calc
+        if(souraOfSavingIndex==77 || souraOfSavingIndex==66 || souraOfSavingIndex==57 || souraOfSavingIndex==45 || souraOfSavingIndex==35 || souraOfSavingIndex==29 || souraOfSavingIndex==22 || souraOfSavingIndex==17 || souraOfSavingIndex==8 || souraOfSavingIndex==4 || souraOfSavingIndex==1){
+          wantedTest = 31 - qArray[souraOfSavingIndex][0].jozz
+        } 
+        sheet.getCell("B1").value = wantedTest;
+
         while (count < 4) {
           if (j >= 45 || (j+count) > 45) {
             break;
           }
-          if (sheet.getCell("E" + (j + count)).value != "---") {
+          if (sheet.getCell("C" + (j + count)).value != "---") {
             if((j+count) == 13 || (j+count) == 24 || (j+count) == 35){
               j++;
               continue;
             }
-            sheet.getCell("F" + (j + count)).value = qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " الخ";
+            sheet.getCell("D" + (j + count)).value = qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " الخ";
             count++;
           } else {
-            sheet.getCell("E" + (j + count)).value =
+            sheet.getCell("C" + (j + count)).value =
               qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
-            sheet.getCell("F" + (j + count)).value = "الخ";
+            sheet.getCell("D" + (j + count)).value = "الخ";
             count++;
           }
           
@@ -365,12 +466,25 @@ function creatTasksForSaving(sheet, qArray,souraOfSavingIndex,amountOfSaving,typ
           lastTaskEndLine = qArray[souraOfSavingIndex][countarOfAya].line_end;
           lastTaskEndPage = qArray[souraOfSavingIndex][countarOfAya].page;
         } else {
+          if(endOfTask == 15){
+            let temp = countarOfAya;
+            while(qArray[souraOfSavingIndex][temp].line_start != 1){
+              temp++;
+              if( qArray[souraOfSavingIndex].length <= temp)break;
+            }
+            sheet.getCell("C" + i).value =
+            qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
+          sheet.getCell("D" + i).value =
+            qArray[souraOfSavingIndex][--temp].aya_no;
+          }else{
           sheet.getCell("C" + i).value =
             qArray[souraOfSavingIndex][countarOfAya - 1].sura_name_ar + " 1";
           sheet.getCell("D" + i).value =
-            qArray[souraOfSavingIndex][countarOfAya - 1].aya_no;
+            qArray[souraOfSavingIndex][countarOfAya ].aya_no;
+          }
           lastTaskEndLine = qArray[souraOfSavingIndex][countarOfAya - 1].line_end;
           lastTaskEndPage = qArray[souraOfSavingIndex][countarOfAya - 1].page;
+          
         }
         break;
       }
@@ -409,15 +523,14 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
   let startOfNextTask = "";
   let lastTaskEndLine = null;
   let lastTaskEndPage = null;
-  sheet.getCell("G" + 3).value =
+  sheet.getCell("F" + 3).value =
     qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar + " 1";
     
   for (let i = 3; i < 46; i++) {
     if (
       i == 13 ||
       i == 24 ||
-      i == 35 ||
-      sheet.getCell("E" + i).value != "---"
+      i == 35 
     ) {
       continue;
     }
@@ -432,12 +545,12 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
         pageOFEndOFtask == qArray[souraOfRevisionIndex][countarOfAya].page &&
         qArray[souraOfRevisionIndex][countarOfAya].line_end >= endOfTask
       ) {
-        sheet.getCell("H" + i).value =
+        sheet.getCell("G" + i).value =
           qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar +
           " " +
           qArray[souraOfRevisionIndex][countarOfAya].aya_no;
         if (i != 3) {
-          sheet.getCell("G" + i).value = startOfNextTask;
+          sheet.getCell("F" + i).value = startOfNextTask;
         }
         //startOfNextTask = sheet.getCell("H" + i).value;
         startOfNextTask = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar + " " + 1;
@@ -492,16 +605,16 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
         
         if(stopAtEnd || addIt){
           if(stopAtEnd){
-          sheet.getCell("H" + i).value = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar  + " الخ";
+          sheet.getCell("G" + i).value = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar  + " الخ";
           if (i != 3) {
-            sheet.getCell("G" + i).value = startOfNextTask;
+            sheet.getCell("F" + i).value = startOfNextTask;
           }
         }else if(addIt){
           i--;
           if (i == 13 || i == 24 || i == 35) {
             i--;
           }
-          sheet.getCell("H" + i).value = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar + " الخ";
+          sheet.getCell("G" + i).value = qArray[souraOfRevisionIndex][countarOfAya].sura_name_ar + " الخ";
         }
         if(startOfRevision == 0){
           souraOfRevisionIndex++;
@@ -543,13 +656,13 @@ function creatTasksForRevisionByLine(sheet, qArray,souraOfRevisionIndex,amountOf
       countarOfAya++;
     }
     if (souraOfRevisionIndex > 113) {
-      sheet.getCell("G" + i).value = startOfNextTask;
-      sheet.getCell("H" + i).value = "النَّاس الخ"
+      sheet.getCell("F" + i).value = startOfNextTask;
+      sheet.getCell("G" + i).value = "النَّاس الخ"
       break;
     }
     if (souraOfRevisionIndex < 1) {
-      sheet.getCell("G" + i).value = startOfNextTask;
-      sheet.getCell("H" + i).value = "البَقَرَة الخ"
+      sheet.getCell("F" + i).value = startOfNextTask;
+      sheet.getCell("G" + i).value = "البَقَرَة الخ"
       break;
     }
   }
@@ -563,22 +676,21 @@ function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amount
     if (
       i == 13 ||
       i == 24 ||
-      i == 35 ||
-      sheet.getCell("E" + i).value != "---"
+      i == 35 
     ) {
       continue;
     }
     if (amountOfRevision == 1) {
-      sheet.getCell("G" + i).value =
+      sheet.getCell("F" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
-      sheet.getCell("H" + i).value = "الخ";
+      sheet.getCell("G" + i).value = "الخ";
       if(typeOfRevision == 0){
         souraOfRevisionIndex++;
       }else{
         souraOfRevisionIndex--;
       }
     } else {
-      sheet.getCell("G" + i).value =
+      sheet.getCell("F" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
 
         if(startOfRevision == 0){
@@ -586,16 +698,17 @@ function creatTasksForRevisionBySoura(sheet, qArray, souraOfRevisionIndex,amount
           if (souraOfRevisionIndex >= 113) {
             souraOfRevisionIndex = 114;
           }
-          sheet.getCell("H" + i).value =
+          sheet.getCell("G" + i).value =
             qArray[souraOfRevisionIndex - 1][0].sura_name_ar + " الخ";
         }else{
           souraOfRevisionIndex -= amountOfRevision;
           if (souraOfRevisionIndex <= 1) {
             souraOfRevisionIndex = 0;
           }
-          sheet.getCell("H" + i).value =
+          sheet.getCell("G" + i).value =
         qArray[souraOfRevisionIndex + 1][0].sura_name_ar + " الخ";
         }
     }
   }
 }
+

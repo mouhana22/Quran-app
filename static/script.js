@@ -16,7 +16,7 @@ function addStudent(){
           <label for="souraOfSaving">بداية الحفظ من :</label>\
           <select class="form-control" id="souraOfSaving" name="souraOfSaving'+counter+'" required>\
             <option value="" selected disabled hidden>اختر السورة</option>\
-            <!-- <option value="0">سورة الفاتحة</option> -->\
+            <option value="0">ايقاف الحفظ</option>\
             <option value="1">سورة البقرة</option>\
             <option value="2">سورة آل عمران</option>\
             <option value="3">سورة النساء</option>\
