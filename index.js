@@ -912,7 +912,7 @@ function creatTasksForRevisionBySoura(
       sheet.getCell("F" + i).value =
         qArray[souraOfRevisionIndex][0].sura_name_ar + " 1";
       sheet.getCell("G" + i).value = "الخ";
-      if (typeOfRevision == 0) {
+      if (startOfRevision == 0) {
         souraOfRevisionIndex++;
       } else {
         souraOfRevisionIndex--;
