@@ -99,7 +99,7 @@ app.post("/", (req, res) => {
       fgColor: { argb: "FCE5CD" },
     };
     sheet.getCell("A1").font = { color: { argb: "000000" } };
-    sheet.getCell("A1").value = ":اسم الطالب";
+    sheet.getCell("A1").value = ":الاسم";
     sheet.getCell("A1").fill = {
       type: "pattern",
       pattern: "solid",
@@ -108,7 +108,7 @@ app.post("/", (req, res) => {
     sheet.getCell("B1").value = studentName;
 
     sheet.getCell("F1").font = { color: { argb: "000000" } };
-    sheet.getCell("F1").value = "الحلقة";
+    sheet.getCell("F1").value = ":الحلقة";
     sheet.getCell("F1").fill = {
       type: "pattern",
       pattern: "solid",
@@ -339,7 +339,11 @@ function sheetStyling(sheet, studentName, halaqaName) {
             bottom: { style: "thin" },
             right: { style: "thin" },
           };
-          //sheet.getCell("C" + i).value = msg;
+          sheet.getCell("E" + i).value = msg;
+          sheet.getCell("E" + i).alignment = {
+          vertical: "middle",
+          horizontal: "center",
+        };
         }
         if (j == 65 || j == 66 || j == 73 || j == 74 || j == 75) {
           sheet.getCell(String.fromCharCode(j) + i).border = {
