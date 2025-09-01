@@ -159,37 +159,37 @@ function sheetStyling(sheet, studentName, halaqaName) {
   sheet.getCell("B1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("C1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("D1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("E1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("G1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("I1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
   sheet.getCell("J1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "000000" },
+    fgColor: { argb: "FFFFFF" },
   };
 
   sheet.getCell("F1").font = { color: { argb: "000000"}, size:9 };
