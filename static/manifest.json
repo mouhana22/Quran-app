@@ -1,5 +1,6 @@
 {
     "background_color":"#ffffff",
+    "theme_color": "#2C3E50",
     "orientation":"portrait-primary",
     "display": "standalone",
     "name": "صانع الخطط القرانية",
