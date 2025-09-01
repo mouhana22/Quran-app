@@ -1,49 +1,718 @@
-body{
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: cover;
-    background-color: white;
-    font-family: 'Lateef', cursive;
+/* ===========================
+   MODERN QURAN APP STYLES
+   =========================== */
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #2C3E50;
+  --primary-light: #34495E;
+  --primary-dark: #1A252F;
+  --secondary-color: #6C757D;
+  --secondary-light: #ADB5BD;
+  --accent-color: #495057;
+  --success-color: #28A745;
+  --warning-color: #FFC107;
+  --error-color: #DC3545;
+  --info-color: #17A2B8;
+  
+  --text-primary: #212529;
+  --text-secondary: #6C757D;
+  --text-light: #ADB5BD;
+  --background: #F8F9FA;
+  --surface: #FFFFFF;
+  --surface-light: #F8F9FA;
+  
+  --border-radius: 12px;
+  --border-radius-lg: 20px;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+  
+  --font-arabic: 'Noto Sans Arabic', 'Amiri', serif;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-arabic);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+  min-height: 100vh;
     margin: 0;
     padding: 0;
     text-align: right;
+  direction: rtl;
 }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+  margin-bottom: 0;
+  animation: fadeInUp 1s ease 0.7s forwards;
+  opacity: 0;
+}
+
+/* ===========================
+   MAIN CONTENT
+   =========================== */
+.main-content {
+  padding: var(--spacing-lg) 0;
+}
+
 .container {
-    background-color:rgba(43, 38, 38, 0.1);
-    border-radius: 1%;
-    padding: 16px;
-    margin-bottom: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
-.thankyou{
+
+/* ===========================
+   FORM SECTION
+   =========================== */
+.form-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Student Cards */
+.student-card {
+  margin-bottom: var(--spacing-lg);
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  border: none;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: none;
+}
+
+.student-title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-title i {
+  margin-left: 0.75rem;
+}
+
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+/* Section Dividers */
+.section-divider {
+  margin: var(--spacing-xl) 0 var(--spacing-lg) 0;
+  position: relative;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  transform: translateY(-50%);
+}
+
+.section-title {
+  background: var(--surface);
+  color: var(--primary-color);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+  padding: 0 var(--spacing-md);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.section-title i {
+  margin-left: 0.75rem;
+}
+
+/* Form Controls */
+.form-floating {
+  position: relative;
+}
+
+.form-control,
+.form-select {
+  background: var(--surface-light);
+  border: 2px solid #E0E0E0;
+  border-radius: var(--border-radius);
+  padding: 1rem var(--spacing-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-arabic);
+  transition: var(--transition);
+  min-height: 58px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+  background: var(--surface);
+}
+
+.form-floating label {
+  font-family: var(--font-arabic);
+  font-weight: 500;
+  color: var(--text-secondary);
+  right: 0.75rem;
+  left: auto;
+  transform-origin: right center;
+  text-align: right;
+  padding: 0;
+  background: transparent !important;
+}
+
+/* Fix for Bootstrap's form-floating in RTL */
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  right: 0.75rem;
+  left: auto;
+  background: #ffffff00 !important;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+  padding: 1rem 0.75rem 0.25rem 0.75rem;
+}
+
+.form-floating > label {
+  right: 0.75rem;
+  left: auto;
+  padding: 1rem 0.75rem;
+  background: transparent !important;
+}
+
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+  background-color: #ffffff00;
+}
+
+.form-floating > .form-select ~ label::after {
+  background-color: #ffffff00;
+}
+
+/* Options Section */
+.option-subtitle {
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+}
+
+.option-group {
+  background: var(--surface-light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  border: 1px solid #E0E0E0;
+}
+
+.form-check {
+  margin-bottom: var(--spacing-sm);
+}
+
+.form-check:last-child {
+  margin-bottom: 0;
+}
+
+.form-check-input {
+  margin-left: var(--spacing-sm);
+  margin-top: 0.125rem;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-check-label {
+  font-family: var(--font-arabic);
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.form-check-label:hover {
+  color: var(--primary-color);
+}
+
+.form-check-label i {
+  color: var(--text-secondary);
+  margin-left: 0.5rem;
+}
+
+/* Validation icons positioning for RTL */
+.form-control.is-valid {
+  background-position: left calc(0.375em + 0.1875rem) center !important;
+  padding-left: calc(1.5em + 0.75rem) !important;
+  padding-right: 0.75rem !important;
+}
+
+.form-control.is-invalid {
+  background-position: left calc(0.375em + 0.1875rem) center !important;
+  padding-left: calc(1.5em + 0.75rem) !important;
+  padding-right: 0.75rem !important;
+}
+
+.form-select.is-valid {
+  background-position: left calc(0.375em + 0.1875rem) center, right 0.75rem center !important;
+  padding-left: calc(1.5em + 0.75rem) !important;
+  padding-right: calc(2.25rem + 0.75rem) !important;
+}
+
+.form-select.is-invalid {
+  background-position: left calc(0.375em + 0.1875rem) center, right 0.75rem center !important;
+  padding-left: calc(1.5em + 0.75rem) !important;
+  padding-right: calc(2.25rem + 0.75rem) !important;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.btn {
+  font-family: var(--font-arabic);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  padding: 0.75rem var(--spacing-md);
+  border: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn i {
+  margin-left: 0.5rem;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  box-shadow: var(--box-shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-lg);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+.btn-outline-success {
+  border: 2px solid var(--success-color);
+  color: var(--success-color);
+  background: transparent;
+}
+
+.btn-outline-success:hover {
+  background: var(--success-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+  border: 2px solid var(--error-color);
+  color: var(--error-color);
+  background: transparent;
+}
+
+.btn-outline-danger:hover {
+  background: var(--error-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-lg {
+  padding: 1rem var(--spacing-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* Action Buttons */
+.action-buttons {
+  background: var(--surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--box-shadow);
+  margin-top: var(--spacing-lg);
+}
+
+.student-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===========================
+   SUCCESS MESSAGE
+   =========================== */
+.thankyou {
     text-align: center;
-    padding: 64px;
+  padding: var(--spacing-xl);
     display: none;
-    font-size: 28px;
+  background: var(--surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  margin-bottom: var(--spacing-lg);
 }
-#page-form.done form {
+
+#page-form.done .form-section,
+#page-form.done .action-buttons {
     display: none;
 }
+
 #page-form.done .thankyou {
     display: block;
-}
-h1{
-    margin-bottom: 28px;
-    text-align: center;
-    background-image: url("background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 60px;
-}
-h3{
-    text-align: center;
-    
+  animation: bounceIn 0.8s ease;
 }
 
-button{
-    margin-top: 15px;
-    margin-bottom: 15px;
+.success-animation {
+  font-size: 4rem;
+  color: var(--success-color);
+  margin-bottom: var(--spacing-md);
 }
 
-.form-check-label{
-    margin-right: 15px;
+.success-animation i {
+  transition: var(--transition);
+}
+
+.thankyou h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.thankyou p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.footer {
+  background: var(--text-primary);
+  color: white;
+  padding: var(--spacing-lg) 0;
+  margin-top: var(--spacing-xl);
+}
+
+.footer p {
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+.footer i {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.footer-contact {
+  margin-top: var(--spacing-sm);
+}
+
+.btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+  background: transparent;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-icon {
+    font-size: 3rem;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .card-body {
+    padding: var(--spacing-md);
+  }
+  
+  .student-controls {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .action-buttons .row > div {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: var(--spacing-lg) 0;
+  }
+  
+
+  
+  .option-group {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+@media print {
+  .hero-section,
+  .footer,
+  .action-buttons {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus indicators */
+.btn:focus,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #000;
+    --text-primary: #000;
+    --text-secondary: #333;
+    --border-color: #000;
+  }
+  
+  .card {
+    border: 2px solid #000;
+  }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html dir="rtl" lang="ar">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -8,82 +8,143 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="manifest" href="manifest.json" />
-    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="apple-touch-icon" href="quran-192x192.png" />
+    <meta name="theme-color" content="#2E7D32" />
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lateef&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
 
     <!-- main CSS -->
     <link rel="stylesheet" href="style.css" />
 
-    <title>صانع الخطط القرآنية</title>
+    <title>صانع الخطط القرآنية | إنشاء خطط دراسة القرآن الكريم</title>
   </head>
   <body>
-    <div>
-      <h1>صانع الخطط القرآنية</h1>
+    <!-- Header -->
+    <header class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 text-center">
+            <div class="hero-content">
+              <div class="hero-icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h1 class="hero-title">صانع الخطط القرآنية</h1>
+              <p class="hero-subtitle">أنشئ خطة شخصية لحفظ ومراجعة القرآن الكريم</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
       <div id="page-form" class="container">
+        <!-- Success Message -->
         <div class="thankyou">
-          شكرا لك
-          <br />
-          <button class="btn btn-primary" onclick="afterSubmission()">
-            إعداد خطة جديدة
+          <div class="success-animation">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2>تم إنشاء الخطة بنجاح!</h2>
+          <p>تم تحميل ملف الخطة القرآنية بنجاح</p>
+          <button class="btn btn-primary btn-lg" onclick="afterSubmission()">
+            <i class="fas fa-plus-circle"></i> إعداد خطة جديدة
           </button>
         </div>
+        <!-- Form Section -->
         <form
           id="main-form"
           method="post"
           action="/"
           onsubmit="afterSubmission()"
+          class="form-section"
         >
           <div id="form">
-            <h3>الطالب رقم 1</h3>
-            <div class="students" id="student1">
-              <div class="row">
-                <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label for="studentName">الاسم:</label>
-                <input
-                  class="form-control"
-                  id="studentName"
-                  name="studentName1"
-                  placeholder="مثال: خالد احمد "
-                />
-              </div>
-            </div>
-              <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label for="halaqaName">اسم الحلقة:</label>
-                <input
-                  class="form-control"
-                  id="halaqaName"
-                  name="halaqaName"
-                  placeholder="مثال: حلقة الصف الخامس  "
-                />
-              </div>
-            </div>
-            </div>
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label for="souraOfSaving">بداية الحفظ من :</label>
-                    <select
-                      class="form-control"
-                      id="souraOfSaving"
-                      name="souraOfSaving1"
-                      required
-                    >
+            <!-- Student Card -->
+            <div class="student-card" id="student1">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="student-title">
+                    <i class="fas fa-user-graduate me-2"></i>
+                    الطالب رقم 1
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <!-- Basic Info -->
+                  <div class="section-divider">
+                    <h4 class="section-title">
+                      <i class="fas fa-circle-user me-2"></i>
+                      البيانات الأساسية
+                    </h4>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="studentName"
+                          name="studentName1"
+                          placeholder="مثال: خالد أحمد"
+                          required
+                        />
+                        <label for="studentName">
+                          اسم الطالب
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="halaqaName"
+                          name="halaqaName"
+                          placeholder="مثال: حلقة الصف الخامس"
+                          required
+                        />
+                        <label for="halaqaName">
+                          اسم الحلقة
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Memorization Section -->
+                  <div class="section-divider">
+                    <h4 class="section-title">
+                      <i class="fas fa-brain me-2"></i>
+                      إعدادات الحفظ
+                    </h4>
+                  </div>
+                  
+                  <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <select
+                          class="form-select"
+                          id="souraOfSaving"
+                          name="souraOfSaving1"
+                          required
+                        >
                       <option value="" selected disabled hidden>
                         اختر السورة
                       </option>
@@ -201,29 +262,62 @@
                       <option value="111">سورة الإخلاص</option>
                       <option value="112">سورة الفلق</option>
                       <option value="113">سورة النّاس</option>
-                    </select>
+                        </select>
+                        <label for="souraOfSaving">
+                          بداية الحفظ من
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="amountOfSaving"
+                          name="amountOfSaving1"
+                          placeholder="7"
+                          min="1"
+                          required
+                        />
+                        <label for="amountOfSaving">
+                          عدد الأسطر لكل واجب
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="repeatCountOfSaving"
+                          name="repeatCountOfSaving1"
+                          placeholder="3"
+                          min="0"
+                          required
+                        />
+                        <label for="repeatCountOfSaving">
+                          تكرار السورة بعد الحفظ
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="amountOfSaving">مقدار الحفظ لكل واجب:</label>
-                    <input
-                      class="form-control"
-                      id="amountOfSaving"
-                      type="number"
-                      name="amountOfSaving1"
-                      required
-                      placeholder=" ادخل عدد الاسطر (مثال: 7)"
-                    />
+                  <!-- Revision Section -->
+                  <div class="section-divider">
+                    <h4 class="section-title">
+                      <i class="fas fa-redo me-2"></i>
+                      إعدادات المراجعة
+                    </h4>
                   </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-group">
-                    <label for="souraOfRevision">بداية المراجعة من :</label>
-                    <select
-                      class="form-control"
-                      id="souraOfRevision"
-                      name="souraOfRevision1"
-                      required
-                    >
+                  
+                  <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <select
+                          class="form-select"
+                          id="souraOfRevision"
+                          name="souraOfRevision1"
+                          required
+                        >
                       <option value="" selected disabled hidden>
                         اختر السورة
                       </option>
@@ -341,144 +435,246 @@
                       <option value="111">سورة الإخلاص</option>
                       <option value="112">سورة الفلق</option>
                       <option value="113">سورة النّاس</option>
-                    </select>
+                        </select>
+                        <label for="souraOfRevision">
+                          بداية المراجعة من
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="amountOfRevision"
+                          name="amountOfRevision1"
+                          placeholder="14"
+                          min="1"
+                          required
+                        />
+                        <label for="amountOfRevision">
+                          مقدار المراجعة لكل واجب
+                        </label>
+                      </div>
+                    </div>
                   </div>
-
-                  <div class="form-group">
-                    <label for="amountOfRevision"
-                      >مقدار المراجعة لكل واجب:</label
-                    >
-                    <input
-                      class="form-control"
-                      id="amountOfRevision"
-                      type="number"
-                      name="amountOfRevision1"
-                      required
-                      placeholder=" ادخل عدد الاسطر (مثال: 14)"
-                    />
+                  
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <h5 class="option-subtitle">نوع المراجعة</h5>
+                      <div class="option-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="typeOfRevision1"
+                            id="revisionType1_0"
+                            value="0"
+                            checked
+                          />
+                          <label class="form-check-label" for="revisionType1_0">
+                            <i class="fas fa-list-ol"></i>بعدد الأسطر
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="typeOfRevision1"
+                            id="revisionType1_1"
+                            value="1"
+                          />
+                          <label class="form-check-label" for="revisionType1_1">
+                            <i class="fas fa-book"></i>بعدد السور
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="typeOfSaving1"
-                      id="inlineRadio3"
-                      value="0"
-                      checked
-                    />
-                    <label class="form-check-label" for="inlineRadio1"
-                      >بداية الحفظ من سورة الناس</label
-                    >
+                  <!-- Options Section -->
+                  <div class="section-divider">
+                    <h4 class="section-title">
+                      <i class="fas fa-cogs me-2"></i>
+                      خيارات إضافية
+                    </h4>
                   </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="typeOfSaving1"
-                      id="inlineRadio4"
-                      value="1"
-                    />
-                    <label class="form-check-label" for="inlineRadio2"
-                      >بداية الحفظ من سورة البقرة</label
-                    >
-                  </div>
-                </div>
-                <div class="col-12 col-md-6">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="startOfRevision1"
-                      id="inlineRadio5"
-                      value="0"
-                      checked
-                    />
-                    <label class="form-check-label" for="inlineRadio1"
-                      >بداية المراجعة من سورة البقرة</label
-                    >
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="startOfRevision1"
-                      id="inlineRadio6"
-                      value="1"
-                    />
-                    <label class="form-check-label" for="inlineRadio2"
-                      >بداية المراجعة من سورة الناس</label
-                    >
-                  </div>
-                </div>
-                <div class="col-12 col-md-6"></div>
-                <div class="col-12 col-md-6">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="typeOfRevision1"
-                      id="inlineRadio1"
-                      value="0"
-                      checked
-                    />
-                    <label class="form-check-label" for="inlineRadio1"
-                      >مقدار المراجعة بعدد السطور</label
-                    >
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="typeOfRevision1"
-                      id="inlineRadio2"
-                      value="1"
-                    />
-                    <label class="form-check-label" for="inlineRadio2"
-                      >مقدار المراجعة بعدد السور</label
-                    >
+                  
+                  <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                      <h5 class="option-subtitle">اتجاه الحفظ</h5>
+                      <div class="option-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="typeOfSaving1"
+                            id="savingType1_0"
+                            value="0"
+                            checked
+                          />
+                          <label class="form-check-label" for="savingType1_0">
+                            <i class="fas fa-arrow-up"></i>من سورة الناس
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="typeOfSaving1"
+                            id="savingType1_1"
+                            value="1"
+                          />
+                          <label class="form-check-label" for="savingType1_1">
+                            <i class="fas fa-arrow-down"></i>من سورة البقرة
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <h5 class="option-subtitle">اتجاه المراجعة</h5>
+                      <div class="option-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="startOfRevision1"
+                            id="revisionStart1_0"
+                            value="0"
+                            checked
+                          />
+                          <label class="form-check-label" for="revisionStart1_0">
+                            <i class="fas fa-arrow-down"></i>من سورة البقرة
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="startOfRevision1"
+                            id="revisionStart1_1"
+                            value="1"
+                          />
+                          <label class="form-check-label" for="revisionStart1_1">
+                            <i class="fas fa-arrow-up"></i>من سورة الناس
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </form>
-        <div id="buttons" class="row">
-          <div class="col-12 col-md-6">
-            <button class="btn btn-primary" onclick="removeStudent()">
-              حذف طالب
-            </button>
-            <button class="btn btn-primary" onclick="addStudent()">
-              اضافة طالب
-            </button>
-          </div>
-          <div class="col-12 col-md-6">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="btn"
-              form="main-form"
-            >
-              تحميل الخطة
-            </button>
+        <!-- Action Buttons -->
+        <div id="buttons" class="action-buttons">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="student-controls">
+                                  <button 
+                  type="button" 
+                  class="btn btn-outline-danger" 
+                  onclick="removeStudent()"
+                >
+                  <i class="fas fa-user-minus"></i>حذف طالب
+                </button>
+                <button 
+                  type="button" 
+                  class="btn btn-outline-success" 
+                  onclick="addStudent()"
+                >
+                  <i class="fas fa-user-plus"></i>
+                  إضافة طالب
+                </button>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="submit-section">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  id="btn"
+                  form="main-form"
+                >
+                  <i class="fas fa-download"></i>
+                  تحميل الخطة
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="text-center">
+          <p class="mb-3">
+            صنع بحب لخدمة كتاب الله الكريم<i class="fas fa-heart text-danger"></i>
+          </p>
+          <div class="footer-contact">
+            <a 
+              href="https://forms.gle/BBvz2gApu5bUBkBz9" 
+              target="_blank" 
+              class="btn btn-outline-light btn-sm"
+              rel="noopener noreferrer"
+            >
+              تواصل معي أو قدم اقتراحاتك<i class="fas fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
     <script src="script.js"></script>
+    
     <script>
       function afterSubmission() {
-        if (document.getElementById("page-form").className === "container") {
-          document.getElementById("page-form").className = "container done";
-          document.getElementById("buttons").style.display = "none";
+        const pageForm = document.getElementById("page-form");
+        const buttons = document.getElementById("buttons");
+        
+        if (!pageForm.classList.contains("done")) {
+          pageForm.classList.add("done");
+          buttons.style.display = "none";
+          
+          // Add success animation
+          setTimeout(() => {
+            document.querySelector('.success-animation i').style.transform = 'scale(1.2)';
+          }, 300);
         } else {
-          document.getElementById("page-form").className = "container";
-          document.getElementById("buttons").style.display = "flex";
+          pageForm.classList.remove("done");
+          buttons.style.display = "block";
+          
+          // Reset submit button state
+          const submitBtn = document.getElementById('btn');
+          if (submitBtn) {
+            submitBtn.innerHTML = `
+              <i class="fas fa-download"></i>
+              تحميل الخطة
+            `;
+            submitBtn.disabled = false;
+          }
         }
       }
+
+      // Form validation feedback
+      document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+          form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          });
+        });
+      });
     </script>
   </body>
 </html>
+

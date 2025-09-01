@@ -22,6 +22,7 @@ app.post("/", (req, res) => {
     let studentName = req.body["studentName" + i];
     let souraOfSaving = parseInt(req.body["souraOfSaving" + i]);
     let amountOfSaving = parseInt(req.body["amountOfSaving" + i]);
+    let repeatCountOfSaving = parseInt(req.body["repeatCountOfSaving" + i]);
     let souraOfRevision = parseInt(req.body["souraOfRevision" + i]);
     let amountOfRevision = parseInt(req.body["amountOfRevision" + i]);
     let typeOfRevision = parseInt(req.body["typeOfRevision" + i]);
@@ -38,7 +39,8 @@ app.post("/", (req, res) => {
           qArray,
           souraOfSaving,
           amountOfSaving,
-          typeOfSaving
+          typeOfSaving,
+          repeatCountOfSaving
         )
       : " ";
     creatTasksForRevision(
@@ -56,47 +58,47 @@ app.post("/", (req, res) => {
     sheet.getCell("B1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("C1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("D1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("E1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("F1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("G1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("H1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("I1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("J1").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FCE5CD" },
+      fgColor: { argb: "F8F9FA" },
     };
     sheet.getCell("A1").font = { color: { argb: "000000" } };
     sheet.getCell("A1").value = ":الاسم";
@@ -157,37 +159,37 @@ function sheetStyling(sheet, studentName, halaqaName) {
   sheet.getCell("B1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("C1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("D1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("E1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("G1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("I1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
   sheet.getCell("J1").fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "FCE5CD" },
+    fgColor: { argb: "000000" },
   };
 
   sheet.getCell("F1").font = { color: { argb: "000000"}, size:9 };
@@ -216,7 +218,7 @@ function sheetStyling(sheet, studentName, halaqaName) {
     sheet.getCell(String.fromCharCode(i) + "2").fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "A61C00" },
+      fgColor: { argb: "495057" },
     };
     sheet.getCell(String.fromCharCode(i) + "2").border = {
       top: { style: "thin" },
@@ -250,20 +252,16 @@ function sheetStyling(sheet, studentName, halaqaName) {
       let msg = "";
       switch (i) {
         case 13:
-          color = "A9D08E";
-          msg = "* أحسنت لقد اجتزت ربع الخطة *";
+          color = "E9ECEF";
           break;
         case 24:
-          color = "F4B084";
-          msg = "* ممتاز لقد اجتزت نصف الخطة *";
+          color = "DEE2E6";
           break;
         case 35:
-          color = "9BC2E6";
-          msg = "* ما شاء الله أنت على وشك الإنتهاء من الخطة *";
+          color = "CED4DA";
           break;
         case 46:
-          color = "F995AD";
-          msg = "* مبارك عليك هذا الإنجاز ومزيد من التقدم والتفوق بإذن الله *";
+          color = "ADB5BD";
           break;
       }
       for (let j = 65; j < 75; j++) {
@@ -394,7 +392,7 @@ function sheetStyling(sheet, studentName, halaqaName) {
         sheet.getCell(String.fromCharCode(j) + i).fill = {
           type: "pattern",
           pattern: "solid",
-          fgColor: { argb: "FAF7DB" },
+          fgColor: { argb: "F8F9FA" },
         };
       } else {
         sheet.getCell(String.fromCharCode(j) + i).border = {
@@ -419,7 +417,8 @@ function creatTasksForSaving(
   qArray,
   souraOfSavingIndex,
   amountOfSaving,
-  typeOfSaving
+  typeOfSaving,
+  repeatCountOfSaving
 ) {
   let wantedTest = "";
   let countarOfAya = 0;
@@ -529,7 +528,8 @@ function creatTasksForSaving(
           sheet.getCell("D" + i).value = "الخ";
           let count = 1;
           let j = i;
-          while (count < 4) {
+          let repeatCount = repeatCountOfSaving + 1;
+          while (count < repeatCount) {
             if (j >= 45 || j + count > 45) {
               break;
             }
@@ -556,7 +556,7 @@ function creatTasksForSaving(
           sheet.getCell("D" + i).value = "الخ";
           let count = 1;
           let j = i;
-
+          let repeatCount = repeatCountOfSaving + 1;
           //wanted test calc
           if (
             souraOfSavingIndex == 77 ||
@@ -575,7 +575,7 @@ function creatTasksForSaving(
           }
           sheet.getCell("B1").value = wantedTest;
 
-          while (count < 4) {
+          while (count < repeatCount) {
             if (j >= 45 || j + count > 45) {
               break;
             }

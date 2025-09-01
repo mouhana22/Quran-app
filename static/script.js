@@ -1,344 +1,512 @@
-var counter = 1;
+/**
+ * Modern Quran App JavaScript
+ * Enhanced with smooth animations and better UX
+ */
 
-function addStudent(){
+let counter = 1;
+
+/**
+ * Add a new student with enhanced animations
+ */
+function addStudent() {
     counter++; 
-    var div = document.createElement("div");
-    div.setAttribute("class","students");
-    div.setAttribute("id",`student${counter}`);
-    var html = '<h3>الطالب رقم '+counter+'</h3>\
-    <div class="form-group">\
-      <label for="studentName">الاسم</label>\
-      <input class="form-control" id="studentName" name="studentName'+counter+'" placeholder="مثال: خالد احمد " />\
-    </div>\
-    <div class="row">\
-      <div class="col-12 col-md-6">\
-        <div class="form-group">\
-          <label for="souraOfSaving">بداية الحفظ من :</label>\
-          <select class="form-control" id="souraOfSaving" name="souraOfSaving'+counter+'" required>\
-            <option value="" selected disabled hidden>اختر السورة</option>\
-            <option value="0">ايقاف الحفظ</option>\
-            <option value="1">سورة البقرة</option>\
-            <option value="2">سورة آل عمران</option>\
-            <option value="3">سورة النساء</option>\
-            <option value="4">سورة المائدة</option>\
-            <option value="5">سورة الأنعام</option>\
-            <option value="6">سورة الأعراف</option>\
-            <option value="7">سورة الأنفال</option>\
-            <option value="8">سورة التوبة</option>\
-            <option value="9">سورة يونس</option>\
-            <option value="10">سورة هود</option>\
-            <option value="11">سورة يوسف</option>\
-            <option value="12">سورة الرعد</option>\
-            <option value="13">سورة إبراهيم</option>\
-            <option value="14">سورة الحجر</option>\
-            <option value="15">سورة النحل</option>\
-            <option value="16">سورة الإسراء</option>\
-            <option value="17">سورة الكهف</option>\
-            <option value="18">سورة مريم</option>\
-            <option value="19">سورة طه</option>\
-            <option value="20">سورة الأنبياء</option>\
-            <option value="21">سورة الحج</option>\
-            <option value="22">سورة المؤمنون</option>\
-            <option value="23">سورة النّور</option>\
-            <option value="24">سورة الفرقان</option>\
-            <option value="25">سورة الشعراء</option>\
-            <option value="26">سورة النّمل</option>\
-            <option value="27">سورة القصص</option>\
-            <option value="28">سورة العنكبوت</option>\
-            <option value="29">سورة الرّوم</option>\
-            <option value="30">سورة لقمان</option>\
-            <option value="31">سورة السجدة</option>\
-            <option value="32">سورة الأحزاب</option>\
-            <option value="33">سورة سبأ</option>\
-            <option value="34">سورة فاطر</option>\
-            <option value="35">سورة يس</option>\
-            <option value="36">سورة الصافات</option>\
-            <option value="37">سورة ص</option>\
-            <option value="38">سورة الزمر</option>\
-            <option value="39">سورة غافر</option>\
-            <option value="40">سورة فصّلت</option>\
-            <option value="41">سورة الشورى</option>\
-            <option value="42">سورة الزخرف</option>\
-            <option value="43">سورة الدّخان</option>\
-            <option value="44">سورة الجاثية</option>\
-            <option value="45">سورة الأحقاف</option>\
-            <option value="46">سورة محمد</option>\
-            <option value="47">سورة الفتح</option>\
-            <option value="48">سورة الحجرات</option>\
-            <option value="49">سورة ق</option>\
-            <option value="50">سورة الذاريات</option>\
-            <option value="51">سورة الطور</option>\
-            <option value="52">سورة النجم</option>\
-            <option value="53">سورة القمر</option>\
-            <option value="54">سورة الرحمن</option>\
-            <option value="55">سورة الواقعة</option>\
-            <option value="56">سورة الحديد</option>\
-            <option value="57">سورة المجادلة</option>\
-            <option value="58">سورة الحشر</option>\
-            <option value="59">سورة الممتحنة</option>\
-            <option value="60">سورة الصف</option>\
-            <option value="61">سورة الجمعة</option>\
-            <option value="62">سورة المنافقون</option>\
-            <option value="63">سورة التغابن</option>\
-            <option value="64">سورة الطلاق</option>\
-            <option value="65">سورة التحريم</option>\
-            <option value="66">سورة الملك</option>\
-            <option value="67">سورة القلم</option>\
-            <option value="68">سورة الحاقة</option>\
-            <option value="69">سورة المعارج</option>\
-            <option value="70">سورة نوح</option>\
-            <option value="71">سورة الجن</option>\
-            <option value="72">سورة المزّمّل</option>\
-            <option value="73">سورة المدّثر</option>\
-            <option value="74">سورة القيامة</option>\
-            <option value="75">سورة الإنسان</option>\
-            <option value="76">سورة المرسلات</option>\
-            <option value="77">سورة النبأ</option>\
-            <option value="78">سورة النازعات</option>\
-            <option value="79">سورة عبس</option>\
-            <option value="80">سورة التكوير</option>\
-            <option value="81">سورة الإنفطار</option>\
-            <option value="82">سورة المطفّفين</option>\
-            <option value="83">سورة الإنشقاق</option>\
-            <option value="84">سورة البروج</option>\
-            <option value="85">سورة الطارق</option>\
-            <option value="86">سورة الأعلى</option>\
-            <option value="87">سورة الغاشية</option>\
-            <option value="88">سورة الفجر</option>\
-            <option value="89">سورة البلد</option>\
-            <option value="90">سورة الشمس</option>\
-            <option value="91">سورة الليل</option>\
-            <option value="92">سورة الضحى</option>\
-            <option value="93">سورة الشرح</option>\
-            <option value="94">سورة التين</option>\
-            <option value="95">سورة العلق</option>\
-            <option value="96">سورة القدر</option>\
-            <option value="97">سورة البينة</option>\
-            <option value="98">سورة الزلزلة</option>\
-            <option value="99">سورة العاديات</option>\
-            <option value="100">سورة القارعة</option>\
-            <option value="101">سورة التكاثر</option>\
-            <option value="102">سورة العصر</option>\
-            <option value="103">سورة الهمزة</option>\
-            <option value="104">سورة الفيل</option>\
-            <option value="105">سورة قريش</option>\
-            <option value="106">سورة الماعون</option>\
-            <option value="107">سورة الكوثر</option>\
-            <option value="108">سورة الكافرون</option>\
-            <option value="109">سورة النصر</option>\
-            <option value="110">سورة المسد</option>\
-            <option value="111">سورة الإخلاص</option>\
-            <option value="112">سورة الفلق</option>\
-            <option value="113">سورة النّاس</option>\
-          </select>\
-        </div>\
-        <div class="form-group">\
-          <label for="amountOfSaving">مقدار الحفظ لكل واجب:</label>\
-          <input class="form-control" id="amountOfSaving" type="number" name="amountOfSaving'+counter+'" required placeholder=" ادخل عدد الاسطر (مثال: 7)" />\
-        </div>\
-      </div>\
-      <div class="col-12 col-md-6">\
-        <div class="form-group">\
-          <label for="souraOfRevision">بداية المراجعة من :</label>\
-          <select class="form-control" id="souraOfRevision" name="souraOfRevision'+counter+'" required>\
-            <option value="" selected disabled hidden>اختر السورة</option>\
-            <!-- <option value="0">سورة الفاتحة</option> -->\
-            <option value="1">سورة البقرة</option>\
-            <option value="2">سورة آل عمران</option>\
-            <option value="3">سورة النساء</option>\
-            <option value="4">سورة المائدة</option>\
-            <option value="5">سورة الأنعام</option>\
-            <option value="6">سورة الأعراف</option>\
-            <option value="7">سورة الأنفال</option>\
-            <option value="8">سورة التوبة</option>\
-            <option value="9">سورة يونس</option>\
-            <option value="10">سورة هود</option>\
-            <option value="11">سورة يوسف</option>\
-            <option value="12">سورة الرعد</option>\
-            <option value="13">سورة إبراهيم</option>\
-            <option value="14">سورة الحجر</option>\
-            <option value="15">سورة النحل</option>\
-            <option value="16">سورة الإسراء</option>\
-            <option value="17">سورة الكهف</option>\
-            <option value="18">سورة مريم</option>\
-            <option value="19">سورة طه</option>\
-            <option value="20">سورة الأنبياء</option>\
-            <option value="21">سورة الحج</option>\
-            <option value="22">سورة المؤمنون</option>\
-            <option value="23">سورة النّور</option>\
-            <option value="24">سورة الفرقان</option>\
-            <option value="25">سورة الشعراء</option>\
-            <option value="26">سورة النّمل</option>\
-            <option value="27">سورة القصص</option>\
-            <option value="28">سورة العنكبوت</option>\
-            <option value="29">سورة الرّوم</option>\
-            <option value="30">سورة لقمان</option>\
-            <option value="31">سورة السجدة</option>\
-            <option value="32">سورة الأحزاب</option>\
-            <option value="33">سورة سبأ</option>\
-            <option value="34">سورة فاطر</option>\
-            <option value="35">سورة يس</option>\
-            <option value="36">سورة الصافات</option>\
-            <option value="37">سورة ص</option>\
-            <option value="38">سورة الزمر</option>\
-            <option value="39">سورة غافر</option>\
-            <option value="40">سورة فصّلت</option>\
-            <option value="41">سورة الشورى</option>\
-            <option value="42">سورة الزخرف</option>\
-            <option value="43">سورة الدّخان</option>\
-            <option value="44">سورة الجاثية</option>\
-            <option value="45">سورة الأحقاف</option>\
-            <option value="46">سورة محمد</option>\
-            <option value="47">سورة الفتح</option>\
-            <option value="48">سورة الحجرات</option>\
-            <option value="49">سورة ق</option>\
-            <option value="50">سورة الذاريات</option>\
-            <option value="51">سورة الطور</option>\
-            <option value="52">سورة النجم</option>\
-            <option value="53">سورة القمر</option>\
-            <option value="54">سورة الرحمن</option>\
-            <option value="55">سورة الواقعة</option>\
-            <option value="56">سورة الحديد</option>\
-            <option value="57">سورة المجادلة</option>\
-            <option value="58">سورة الحشر</option>\
-            <option value="59">سورة الممتحنة</option>\
-            <option value="60">سورة الصف</option>\
-            <option value="61">سورة الجمعة</option>\
-            <option value="62">سورة المنافقون</option>\
-            <option value="63">سورة التغابن</option>\
-            <option value="64">سورة الطلاق</option>\
-            <option value="65">سورة التحريم</option>\
-            <option value="66">سورة الملك</option>\
-            <option value="67">سورة القلم</option>\
-            <option value="68">سورة الحاقة</option>\
-            <option value="69">سورة المعارج</option>\
-            <option value="70">سورة نوح</option>\
-            <option value="71">سورة الجن</option>\
-            <option value="72">سورة المزّمّل</option>\
-            <option value="73">سورة المدّثر</option>\
-            <option value="74">سورة القيامة</option>\
-            <option value="75">سورة الإنسان</option>\
-            <option value="76">سورة المرسلات</option>\
-            <option value="77">سورة النبأ</option>\
-            <option value="78">سورة النازعات</option>\
-            <option value="79">سورة عبس</option>\
-            <option value="80">سورة التكوير</option>\
-            <option value="81">سورة الإنفطار</option>\
-            <option value="82">سورة المطفّفين</option>\
-            <option value="83">سورة الإنشقاق</option>\
-            <option value="84">سورة البروج</option>\
-            <option value="85">سورة الطارق</option>\
-            <option value="86">سورة الأعلى</option>\
-            <option value="87">سورة الغاشية</option>\
-            <option value="88">سورة الفجر</option>\
-            <option value="89">سورة البلد</option>\
-            <option value="90">سورة الشمس</option>\
-            <option value="91">سورة الليل</option>\
-            <option value="92">سورة الضحى</option>\
-            <option value="93">سورة الشرح</option>\
-            <option value="94">سورة التين</option>\
-            <option value="95">سورة العلق</option>\
-            <option value="96">سورة القدر</option>\
-            <option value="97">سورة البينة</option>\
-            <option value="98">سورة الزلزلة</option>\
-            <option value="99">سورة العاديات</option>\
-            <option value="100">سورة القارعة</option>\
-            <option value="101">سورة التكاثر</option>\
-            <option value="102">سورة العصر</option>\
-            <option value="103">سورة الهمزة</option>\
-            <option value="104">سورة الفيل</option>\
-            <option value="105">سورة قريش</option>\
-            <option value="106">سورة الماعون</option>\
-            <option value="107">سورة الكوثر</option>\
-            <option value="108">سورة الكافرون</option>\
-            <option value="109">سورة النصر</option>\
-            <option value="110">سورة المسد</option>\
-            <option value="111">سورة الإخلاص</option>\
-            <option value="112">سورة الفلق</option>\
-            <option value="113">سورة النّاس</option>\
-          </select>\
-        </div>\
-        <div class="form-group">\
-          <label for="amountOfRevision">مقدار المراجعة لكل واجب:</label>\
-          <input class="form-control" id="amountOfRevision" type="number" name="amountOfRevision'+counter+'" required placeholder=" ادخل عدد الاسطر (مثال: 14)" />\
-        </div>\
-      </div>\
-    </div>\
-    <div class="row">\
-    <div class="col-12 col-md-6">\
-                  <div class="form-check form-check-inline">\
-                    <input\
-                      class="form-check-input"\
-                      type="radio"\
-                      name="typeOfSaving'+counter+'"\
-                      id="inlineRadio3"\
-                      value="0"\
-                      checked\
-                    />\
-                    <label class="form-check-label" for="inlineRadio1"\
-                      >بداية الحفظ من سورة الناس</label\
-                    >\
-                  </div>\
-                  <div class="form-check form-check-inline">\
-                    <input\
-                      class="form-check-input"\
-                      type="radio"\
-                      name="typeOfSaving'+counter+'"\
-                      id="inlineRadio4"\
-                      value="1"\
-                    />\
-                    <label class="form-check-label" for="inlineRadio2"\
-                      >بداية الحفظ من سورة البقرة</label\
-                    >\
-                  </div>\
-                </div>\
-                <div class="col-12 col-md-6">\
-                  <div class="form-check form-check-inline">\
-                    <input\
-                      class="form-check-input"\
-                      type="radio"\
-                      name="startOfRevision'+counter+'"\
-                      id="inlineRadio5"\
-                      value="0"\
-                      checked\
-                    />\
-                    <label class="form-check-label" for="inlineRadio1"\
-                      >بداية المراجعة من سورة البقرة</label\
-                    >\
-                  </div>\
-                  <div class="form-check form-check-inline">\
-                    <input\
-                      class="form-check-input"\
-                      type="radio"\
-                      name="startOfRevision'+counter+'"\
-                      id="inlineRadio6"\
-                      value="1"\
-                    />\
-                    <label class="form-check-label" for="inlineRadio2"\
-                      >بداية المراجعة من سورة الناس</label\
-                    >\
-                  </div>\
-                </div>\
-                <div class="col-12 col-md-6"></div>\
-      <div class="col-12 col-md-6">\
-      <div class="form-check form-check-inline">\
-      <input class="form-check-input" type="radio" name="typeOfRevision'+counter+'" id="inlineRadio1" value="0" checked>\
-      <label class="form-check-label" for="inlineRadio1">مقدار المراجعة بعدد السطور</label>\
-    </div>\
-    <div class="form-check form-check-inline">\
-      <input class="form-check-input" type="radio" name="typeOfRevision'+counter+'" id="inlineRadio2" value="1">\
-      <label class="form-check-label" for="inlineRadio2">مقدار المراجعة بعدد السور</label>\
-    </div>\
-      </div>\
-    </div>\
-  </div>'
+    
+    // Create new student card with modern structure
+    const div = document.createElement("div");
+    div.setAttribute("class", "student-card");
+    div.setAttribute("id", `student${counter}`);
+    
+    // Add entry animation
+    div.style.opacity = "0";
+    div.style.transform = "translateY(50px)";
+    
+    const html = generateStudentHTML(counter);
     div.innerHTML = html;
-    document.getElementById('form').append(div)
+    
+    // Add to DOM
+    document.getElementById('form').appendChild(div);
+    
+    // Animate in
+    setTimeout(() => {
+        div.style.transition = "all 0.6s ease";
+        div.style.opacity = "1";
+        div.style.transform = "translateY(0)";
+    }, 100);
+    
+    // Scroll to new student smoothly
+    setTimeout(() => {
+        div.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }, 700);
+    
+    // Show success notification
+    showNotification('تم إضافة طالب جديد بنجاح', 'success');
 }
 
-function removeStudent(){
-    if(counter>1){
-        document.getElementById('student'+counter+'').remove();
+/**
+ * Generate HTML for student form
+ */
+function generateStudentHTML(studentNumber) {
+    return `
+        <div class="card">
+            <div class="card-header">
+                <h3 class="student-title">
+                    <i class="fas fa-user-graduate me-2"></i>
+                    الطالب رقم ${studentNumber}
+                </h3>
+            </div>
+            <div class="card-body">
+                <!-- Basic Info -->
+                                  <div class="section-divider">
+                    <h4 class="section-title">
+                      <i class="fas fa-circle-user me-2"></i>
+                      البيانات الأساسية
+                    </h4>
+                  </div>
+                <div class="row mb-4">
+                    <div class="col-12 col-md-12">
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="studentName${studentNumber}"
+                                name="studentName${studentNumber}"
+                                placeholder="مثال: مهنا بن عاصم "
+                                required
+                            />
+                            <label for="studentName${studentNumber}">
+                                اسم الطالب
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memorization Section -->
+                <div class="section-divider">
+                    <h4 class="section-title">
+                        <i class="fas fa-brain me-2"></i>
+                        إعدادات الحفظ
+                    </h4>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="souraOfSaving${studentNumber}" name="souraOfSaving${studentNumber}" required>
+                                ${generateSurahOptions()}
+                            </select>
+                            <label for="souraOfSaving${studentNumber}">
+                                بداية الحفظ من
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating mb-3">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="amountOfSaving${studentNumber}"
+                                name="amountOfSaving${studentNumber}"
+                                placeholder="7"
+                                required
+                            />
+                            <label for="amountOfSaving${studentNumber}">
+                                عدد الأسطر لكل واجب
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="form-floating mb-3">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="repeatCountOfSaving${studentNumber}"
+                                name="repeatCountOfSaving${studentNumber}"
+                                placeholder="3"
+                                min="0"
+                                required
+                            />
+                            <label for="repeatCountOfSaving${studentNumber}">
+                                تكرار السورة بعد الحفظ
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Revision Section -->
+                <div class="section-divider">
+                    <h4 class="section-title">
+                        <i class="fas fa-redo me-2"></i>
+                        إعدادات المراجعة
+                    </h4>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="souraOfRevision${studentNumber}" name="souraOfRevision${studentNumber}" required>
+                                ${generateSurahOptions(true)}
+                            </select>
+                            <label for="souraOfRevision${studentNumber}">
+                                بداية المراجعة من
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating mb-3">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="amountOfRevision${studentNumber}"
+                                name="amountOfRevision${studentNumber}"
+                                placeholder="14"
+                                required
+                            />
+                            <label for="amountOfRevision${studentNumber}">
+                                مقدار المراجعة لكل واجب
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5 class="option-subtitle">نوع المراجعة</h5>
+                        <div class="option-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeOfRevision${studentNumber}" id="revisionType${studentNumber}_0" value="0" checked>
+                                <label class="form-check-label" for="revisionType${studentNumber}_0">
+                                    <i class="fas fa-list-ol"></i>بعدد الأسطر
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeOfRevision${studentNumber}" id="revisionType${studentNumber}_1" value="1">
+                                <label class="form-check-label" for="revisionType${studentNumber}_1">
+                                    <i class="fas fa-book"></i>بعدد السور
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Options Section -->
+                <div class="section-divider">
+                    <h4 class="section-title">
+                        <i class="fas fa-cogs me-2"></i>
+                        خيارات إضافية
+                    </h4>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6">
+                        <h5 class="option-subtitle">اتجاه الحفظ</h5>
+                        <div class="option-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeOfSaving${studentNumber}" id="savingType${studentNumber}_0" value="0" checked>
+                                <label class="form-check-label" for="savingType${studentNumber}_0">
+                                    <i class="fas fa-arrow-up"></i>من سورة الناس
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeOfSaving${studentNumber}" id="savingType${studentNumber}_1" value="1">
+                                <label class="form-check-label" for="savingType${studentNumber}_1">
+                                    <i class="fas fa-arrow-down"></i>من سورة البقرة
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h5 class="option-subtitle">اتجاه المراجعة</h5>
+                        <div class="option-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="startOfRevision${studentNumber}" id="revisionStart${studentNumber}_0" value="0" checked>
+                                <label class="form-check-label" for="revisionStart${studentNumber}_0">
+                                    <i class="fas fa-arrow-down"></i>من سورة البقرة
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="startOfRevision${studentNumber}" id="revisionStart${studentNumber}_1" value="1">
+                                <label class="form-check-label" for="revisionStart${studentNumber}_1">
+                                    <i class="fas fa-arrow-up"></i>من سورة الناس
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Generate Surah options for select elements
+ */
+function generateSurahOptions(isRevision = false) {
+    const surahs = [
+        "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود",
+        "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء",
+        "الحج", "المؤمنون", "النّور", "الفرقان", "الشعراء", "النّمل", "القصص", "العنكبوت", "الرّوم", "لقمان",
+        "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر", "فصّلت",
+        "الشورى", "الزخرف", "الدّخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات",
+        "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة", "الصف",
+        "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج", "نوح",
+        "الجن", "المزّمّل", "المدّثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس", "التكوير",
+        "الإنفطار", "المطفّفين", "الإنشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس",
+        "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة",
+        "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد",
+        "الإخلاص", "الفلق", "النّاس"
+    ];
+    
+    let options = '<option value="" selected disabled hidden>اختر السورة</option>';
+    
+    if (!isRevision) {
+        options += '<option value="0">ايقاف الحفظ</option>';
+    }
+    
+    surahs.forEach((surah, index) => {
+        options += `<option value="${index + 1}">سورة ${surah}</option>`;
+    });
+    
+    return options;
+}
+
+/**
+ * Remove student with enhanced animations
+ */
+function removeStudent() {
+    if (counter > 1) {
+        const studentElement = document.getElementById(`student${counter}`);
+        
+        // Add exit animation
+        studentElement.style.transition = "all 0.5s ease";
+        studentElement.style.opacity = "0";
+        studentElement.style.transform = "translateY(-50px) scale(0.8)";
+        
+        // Remove after animation
+        setTimeout(() => {
+            studentElement.remove();
         counter--;
+            showNotification('تم حذف الطالب بنجاح', 'info');
+        }, 500);
+    } else {
+        showNotification('لا يمكن حذف آخر طالب', 'warning');
     }
 }
+
+/**
+ * Show notification with different types
+ */
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas ${getNotificationIcon(type)} me-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Style notification
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        color: white;
+        font-family: var(--font-arabic);
+        font-weight: 500;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+        max-width: 300px;
+        background: ${getNotificationColor(type)};
+    `;
+    
+    // Add to DOM
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Auto remove
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 3000);
+}
+
+/**
+ * Get notification icon based on type
+ */
+function getNotificationIcon(type) {
+    const icons = {
+        'success': 'fa-check-circle',
+        'error': 'fa-exclamation-circle',
+        'warning': 'fa-exclamation-triangle',
+        'info': 'fa-info-circle'
+    };
+    return icons[type] || icons.info;
+}
+
+/**
+ * Get notification color based on type
+ */
+function getNotificationColor(type) {
+    const colors = {
+        'success': 'linear-gradient(135deg, #28A745 0%, #20853C 100%)',
+        'error': 'linear-gradient(135deg, #DC3545 0%, #C42E3E 100%)',
+        'warning': 'linear-gradient(135deg, #FFC107 0%, #E0A500 100%)',
+        'info': 'linear-gradient(135deg, #6C757D 0%, #5A6268 100%)'
+    };
+    return colors[type] || colors.info;
+}
+
+/**
+ * Enhanced form validation
+ */
+function validateForm() {
+    const form = document.getElementById('main-form');
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('is-invalid');
+            
+            // Add shake animation
+            input.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                input.style.animation = '';
+            }, 500);
+        } else {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+        }
+    });
+    
+    if (!isValid) {
+        showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+    }
+    
+    return isValid;
+}
+
+/**
+ * Loading state management
+ */
+function showLoading() {
+    const submitBtn = document.getElementById('btn');
+    const originalText = submitBtn.innerHTML;
+    
+    submitBtn.innerHTML = `
+        <i class="fas fa-spinner fa-spin me-2"></i>
+        جاري إنشاء الخطة...
+    `;
+    submitBtn.disabled = true;
+    
+    return () => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    };
+}
+
+/**
+ * Initialize app functionality
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Add loading animation to form submission
+    const form = document.getElementById('main-form');
+    form.addEventListener('submit', function(e) {
+        if (!validateForm()) {
+            e.preventDefault();
+            return;
+        }
+        
+        // Show loading state
+        const hideLoading = showLoading();
+    });
+    
+    // Add real-time validation
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.hasAttribute('required')) {
+                if (!this.value.trim()) {
+                    this.classList.add('is-invalid');
+                    this.classList.remove('is-valid');
+                } else {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                }
+            }
+        });
+        
+        // Remove validation classes on focus
+        input.addEventListener('focus', function() {
+            this.classList.remove('is-invalid', 'is-valid');
+        });
+    });
+    
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + Enter to submit form
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('btn').click();
+        }
+        
+        // Ctrl/Cmd + Plus to add student
+        if ((e.ctrlKey || e.metaKey) && e.key === '+') {
+            e.preventDefault();
+            addStudent();
+        }
+        
+        // Ctrl/Cmd + Minus to remove student
+        if ((e.ctrlKey || e.metaKey) && e.key === '-') {
+            e.preventDefault();
+            removeStudent();
+        }
+    });
+    
+    // Show welcome message
+    setTimeout(() => {
+        showNotification('مرحباً بك في صانع الخطط القرآنية', 'success');
+    }, 1000);
+});
+
+// Add shake animation for invalid inputs
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+    
+    .is-invalid {
+        border-color: #DC3545 !important;
+    }
+    
+    .is-valid {
+        border-color: #28A745 !important;
+    }
+`;
+document.head.appendChild(style);
